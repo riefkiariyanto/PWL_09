@@ -1,30 +1,20 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Mahasiswa;
 
 class Mahasiswa extends Model
 {
     use HasFactory;
-    protected $table = "mahasiswas";
-    public $timestamps = false;
-    protected $primaryKey = 'nim';
+    protected $table='mahasiswas';
+    protected $primaryKey='nim';
+    protected $incerement = false;
+    protected $fillable = ['nim','nama','kelas_id','jurusan'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'nim',
-        'nama',
-        'email',
-        'tanggal_lahir',
-        'kelas',
-        'jurusan',
-        'no_hp',
-    ];
-}
+    public function kelas()
+    {
+        return $this->belongsTo(kelas::class);
+    }
+} 
