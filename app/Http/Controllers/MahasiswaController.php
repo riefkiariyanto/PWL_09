@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
+use App\Models\Kelas;
 class MahasiswaController extends Controller
 {
     /**
@@ -24,7 +25,8 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('mahasiswa.create');
+        $kelas=Kelas::all();
+        return view('mahasiswa.create',compact('kelas'));
     }
     /**
      * Store a newly created resource in storage.
@@ -36,7 +38,7 @@ class MahasiswaController extends Controller
     {
         $request->validate(['nim'=>'required'
         ,'nama'=>'required'
-        ,'kelas'=>'required'
+        ,'kelas_id'=>'required'
         ,'jurusan'=>'required'
         ,'no_handphone'=>'required'
         ,'email'=>'required'
@@ -54,8 +56,8 @@ class MahasiswaController extends Controller
      */
     public function show($nim)
     {
-        $mahasiswa=Mahasiswa::find($nim);
-        return view('mahasiswa.detail',compact('mahasiswa'));
+        $kelas=Kelas::all();
+        return view('mahasiswa.edit',compact('mahasiswa','kelas'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -79,7 +81,7 @@ class MahasiswaController extends Controller
     {
         $request->validate(['nim'=>'required'
         ,'nama'=>'required'
-        ,'kelas'=>'required'
+        ,'kelas_id'=>'required'
         ,'jurusan'=>'required'
         ,'no_handphone'=>'required'
          ,'email'=>'required'
