@@ -27,25 +27,28 @@
  <table class="table table-bordered">
      <tr>
          <th>Nim</th>
+         <th>Nim</th>
          <th>Nama</th>
-         <th>Email</th>
-         <th>Tanggal Lahir</th>
+         <th>Foto</th>
          <th>Kelas</th>
          <th>Jurusan</th>
          <th>No_Handphone</th>
+         <th>Email</th>
+         <th>Tanggal Lahir</th>
          <th width="280px">Action</th>
     </tr>
 
     @foreach ($mahasiswas as $mahasiswa)
     <tr>
-        <td>{{ $mahasiswa->nim }}</td>
-        <td>{{ $mahasiswa->nama }}</td>
-        <td>{{ $mahasiswa->email}}</td>
-        <td>{{ $mahasiswa->tanggal_lahir}}</td>
-        <td>{{ $mahasiswa->kelas }}</td>
-        <td>{{ $mahasiswa->jurusan }}</td>
-        <td>{{ $mahasiswa->no_hp }}</td>
-        <td>
+        <td>{{$mahasiswa->nim}}</td>
+		<td>{{$mahasiswa->nama}}</td>
+		<td><img width="100px" height="100px" src="{{asset('storage/'.$mahasiswa->foto)}}"></td>
+		<td>{{$mahasiswa->kelas->nama_kelas}}</td>
+		<td>{{$mahasiswa->jurusan}}</td>
+		<td>{{$mahasiswa->no_handphone}}</td>
+		<td>{{$mahasiswa->email}}</td>
+		<td>{{$mahasiswa->tanggal_lahir}}</td>
+		<td>
             <form action="{{ route('mahasiswa.destroy',$mahasiswa->nim) }}" method="POST">
                 <a class="btn btn-info" href="{{ route('mahasiswa.show',$mahasiswa->nim) }}">Show</a>
                 <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$mahasiswa->nim) }}">Edit</a>
